@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VELS INDOOR SPORTS ACADEMY</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <script
+            src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    </head>
+
+    <body>
+
+        <div class="field-lines"></div>
+
+        <nav>
+            <div class="logo"><span class="logo-dot"></span><span
+                    class="logo-text">VELS INDOOR SPORTS ACADEMY</span></div>
+            <div class="nav-links">
+                <a data-scroll="book">Book a Slot</a>
+                <a data-scroll="location">Location</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div>
+                <div class="eyebrow">● Wooden court · open tonight</div>
+                <h1>Book the court.<br>Own the <span
+                        class="accent">rally.</span></h1>
+                <p>One badminton court, always ready. Pick a day, tap an open
+                    slot under the lights, and you're in — no calls, no
+                    waitlists.</p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary" data-scroll="book">Find a
+                        slot</button>
+                    <button class="btn btn-ghost"
+                        data-scroll="location">Location</button>
+                </div>
+            </div>
+            <div class="hero-board">
+                <div class="mini-grid" id="heroMiniGrid"></div>
+                <div class="hero-board-foot">
+                    <span><span class="turf">●</span> open</span>
+                    <span><span class="hot">●</span> peak hour</span>
+                    <span><span class="taken">●</span> taken</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="turfs">
+            <div class="section-head">
+                <div class="section-tag">The court</div>
+                <h2>About this court</h2>
+            </div>
+            <div class="court-card" id="courtCard"></div>
+        </section>
+
+        <section id="book">
+            <div class="section-head">
+                <div class="section-tag">Step 01 — Choose date &amp; slot</div>
+                <h2>The scoreboard</h2>
+            </div>
+            <div class="date-strip" id="dateStrip"></div>
+
+            <div class="scoreboard">
+                <div class="scoreboard-head">
+                    <h3 id="scoreboardTitle">Loading slots…</h3>
+                    <div class="legend">
+                        <span><i class="dot open"></i>Open</span>
+                        <span><i class="dot hot"></i>Peak</span>
+                        <span><i class="dot taken"></i>Taken</span>
+                        <span><i class="dot sel"></i>Selected</span>
+                    </div>
+                </div>
+                <div class="slot-grid" id="slotGrid"></div>
+            </div>
+        </section>
+
+        <div class="summary-bar" id="summaryBar">
+            <div class="summary-info">Slots selected: <b id="sumCount">0</b>
+                &nbsp;·&nbsp; <span id="sumSlots">—</span></div>
+            <div style="display:flex;align-items:center;gap:20px;">
+                <div class="summary-total">₹<span id="sumTotal">0</span></div>
+                <button class="btn btn-primary" id="reviewBtn">Book via Google
+                    Pay</button>
+            </div>
+        </div>
+
+        <section id="location">
+            <div class="section-head">
+                <div class="section-tag">Find us</div>
+                <h2>Location</h2>
+            </div>
+            <div class="location-wrap">
+                <div class="location-info">
+                    <h3>Badminton Court</h3>
+                    <p>Drop a pin and drive over — the court sits right where
+                        the map marks it. Tap below to open turn-by-turn
+                        directions in Google Maps.</p>
+                    <div class="hero-cta" style="margin-top:20px;">
+                        <a class="btn btn-primary"
+                            href="https://maps.app.goo.gl/QttiBeYPZWzKABia9"
+                            target="_blank" rel="noopener">Get directions</a>
+                        <a class="btn btn-ghost"
+                            href="https://maps.app.goo.gl/QttiBeYPZWzKABia9"
+                            target="_blank" rel="noopener">Rate us on Google
+                            Maps</a>
+                    </div>
+                    <p
+                        style="margin-top:18px; font-size:14px; color:var(--chalk-dim);">Enjoyed
+                        your game? Please leave your review on Google Maps
+                        instead of here — it helps other players find us.</p>
+                    <p
+                        style="margin-top:10px; font-size:14px; color:var(--chalk-dim);">For
+                        queries, call or WhatsApp <a href="tel:+917867879173"
+                            style="color:var(--floodlight); text-decoration:none;">+91
+                            78678 79173</a>.</p>
+                </div>
+                <div class="location-map">
+                    <iframe loading="lazy" allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://maps.google.com/maps?q=13.1960792,80.1794109&z=16&output=embed"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <footer>VELS INDOOR SPORTS ACADEMY — BADMINTON COURT BOOKING · CHENNAI · UNDER THE
+            LIGHTS, ON YOUR TIME</footer>
+
+        <!-- Google Pay booking modal -->
+        <div class="overlay" id="formOverlay">
+            <div class="modal">
+                <button class="close-x" id="closeForm">×</button>
+                <h3>Pay via Google Pay to confirm</h3>
+                <div class="modal-recap" id="formRecap"></div>
+                <div class="field"><label>Full name</label><input type="text"
+                        id="fName" required placeholder="e.g. Arun Kumar"></div>
+                <div class="field"><label>Phone number</label><input type="tel"
+                        id="fPhone" required placeholder="10-digit mobile"
+                        pattern="[0-9]{10}"></div>
+                <div
+                    style="background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:18px; margin:18px 0; text-align:center;">
+                    <div
+                        style="font-size:13px; color:var(--chalk-dim); margin-bottom:12px;">Scan
+                        &amp; pay on Google Pay / any UPI app</div>
+                    <img src="qr.png" alt="Google Pay QR code"
+                        style="width:200px; height:200px; display:block; margin:0 auto 12px; object-fit:contain; background:#fff; padding:8px; border-radius:10px;">
+                    <div class="mono"
+                        style="font-size:20px; color:var(--floodlight); letter-spacing:1px;">jayaraj001g@okhdfcbank</div>
+                </div>
+                <p
+                    style="font-size:14px; color:var(--chalk-dim); line-height:1.6;">After
+                    paying, send a screenshot on WhatsApp with your name and the
+                    slots above so we can confirm your booking. For any queries,
+                    call or WhatsApp <a href="tel:+917867879173"
+                        style="color:var(--floodlight); text-decoration:none;">+91
+                        78678 79173</a>.</p>
+                <div id="saveError"
+                    style="display:none; color:var(--score-red); font-size:13px; margin-top:8px;">Please
+                    enter your name and a valid 10-digit phone number.</div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost"
+                        id="cancelForm">Back</button>
+                    <button type="button" class="btn btn-primary"
+                        id="whatsappConfirm">Save &amp; confirm on
+                        WhatsApp</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
