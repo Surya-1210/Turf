@@ -7,12 +7,20 @@ A web app for booking badminton court slots in Chennai. Users pick a date and sl
 - [Jayaraj](https://github.com/Jayaraj-G)
 - [Surya](https://github.com/Surya-1210)
 
-## Contributors
+## Contributors ✨
 
-<a href="https://github.com/surya-vec12/vels-badminton-booking/graphs/contributors">
-  <img src="https://avatars.githubusercontent.com/u/351752823?v=4" />
-</a>
+Thanks goes to these wonderful people:
 
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/surya-vec12">
+        <img src="https://avatars.githubusercontent.com/u/351752823?v=4" width="100" height="100" alt="Surya"/><br />
+        <sub><b>surya-vec12</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 ## Features
 
 - 7-day date selector with live slot availability
