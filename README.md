@@ -1,112 +1,78 @@
 # Vels Indoor Sports Academy - Badminton Court Booking
 
-A web application for booking time slots at a badminton court in Chennai. Users select a date and one or more available slots, pay through Google Pay (UPI), and confirm the booking over WhatsApp. Booked slots are stored in Supabase so that availability is consistent for every visitor.
+A web app for booking badminton court slots in Chennai. Users pick a date and slots, pay via Google Pay (UPI), and confirm the booking on WhatsApp. Bookings are stored in Supabase so availability is the same for everyone.
 
 ## Authors
 
-- Jayaraj
-- Surya
+- [Jayaraj](https://github.com/Jayaraj-G)
+- [Surya](https://github.com/Surya-1210)
+
+## Contributors
+
+<a href="https://github.com/surya-vec12/vels-badminton-booking/graphs/contributors">
+  <img src="https://avatars.githubusercontent.com/u/351752823?v=4" />
+</a>
 
 ## Features
 
-- 7-day date selector with real-time slot availability
-- Separate operating hours for weekdays and weekends
-- Multi-slot selection with a running total
-- Persistent bookings in Supabase, with booked slots blocked for all users
-- UPI / Google Pay QR code payment
-- Booking details sent to the owner via WhatsApp
-- Embedded Google Maps location with directions
+- 7-day date selector with live slot availability
+- Different hours for weekdays and weekends
+- Multi-slot selection with running total
+- Booked slots blocked for all users (Supabase)
+- UPI / Google Pay QR payment
+- Booking details sent to owner via WhatsApp
+- Embedded Google Maps location
 
-## Operating Hours and Pricing
+## Hours and Pricing
 
-| Days | Hours |
-|---|---|
-| Monday - Friday | 7:00 PM - 11:00 PM |
-| Saturday - Sunday | 11:00 AM - 8:00 PM |
+| Days      | Hours              |
+| --------- | ------------------ |
+| Mon - Fri | 7:00 PM - 11:00 PM |
+| Sat - Sun | 11:00 AM - 8:00 PM |
 
 Price: Rs. 400 per hour
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | HTML, CSS, Vanilla JavaScript |
-| Database | Supabase (PostgreSQL) |
-| Fonts | Google Fonts (Teko, Work Sans, Space Mono) |
-| Hosting | GitHub Pages |
-
-## Project Structure
-
-```
-.
-├── index.html     # Page structure and booking modal
-├── styles.css     # Styling
-├── script.js      # Slot logic, Supabase integration, WhatsApp redirect
-├── qr.png         # Google Pay QR code
-└── README.md
-```
+HTML, CSS, Vanilla JavaScript, Supabase (PostgreSQL), GitHub Pages
 
 ## Database Setup
 
-Create a table named `bookings` in Supabase with the following columns:
+Create a bookings table in Supabase:
 
-| Column | Type | Notes |
-|---|---|---|
-| `id` | uuid | Primary key, default `gen_random_uuid()` |
-| `name` | text | Customer name |
-| `phone` | text | 10-digit mobile number |
-| `date` | date | Booking date |
-| `slots` | text | Comma-separated times, e.g. `19:00,20:00` |
-| `total` | int4 | Total amount in rupees |
+| Column | Type                                          |
+| ------ | --------------------------------------------- |
+| id     | uuid (primary key, default gen_random_uuid()) |
+| name   | text                                          |
+| phone  | text                                          |
+| date   | date                                          |
+| slots  | text (e.g. 19:00,20:00)                       |
+| total  | int4                                          |
 
-Enable Row Level Security and allow the public (anon) role to read and insert only:
+Enable Row Level Security:
 
-```sql
 alter table bookings enable row level security;
 
 create policy "anon can read" on bookings
-  for select to anon using (true);
+for select to anon using (true);
 
 create policy "anon can insert" on bookings
-  for insert to anon with check (true);
-```
+for insert to anon with check (true);
+Add your keys in script.js:
 
-Add the project URL and anon public key in `script.js`:
-
-```js
 const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
 const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
-```
 
-Note: The anon key is safe to expose only when Row Level Security is enabled. Never use the `service_role` key in client-side code.
+## Run Locally
 
-## Running Locally
+git clone https://github.com/YOUR-USERNAME/vels-badminton-booking.git
+cd vels-badminton-booking
+Open index.html in a browser (or use VS Code Live Server).
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/vels-badminton-booking.git
-   cd vels-badminton-booking
-   ```
-2. Open `index.html` in a browser, or serve the folder with a tool such as the VS Code Live Server extension.
+## Deploy
 
-## Deployment (GitHub Pages)
-
-1. Open the repository **Settings** and select **Pages**.
-2. Under **Branch**, choose `main` and the `/ (root)` folder, then save.
-3. The site will be available at `https://YOUR-USERNAME.github.io/vels-badminton-booking/`.
-
-## Configuration
-
-| Item | Location |
-|---|---|
-| Price, court name, tags | `COURT` object in `script.js` |
-| Operating hours | `slotTimesFor()` and `renderCourtCard()` in `script.js` |
-| WhatsApp number | `wa.me` link in `script.js` |
-| UPI ID and QR code | Booking modal in `index.html`, and `qr.png` |
-| Colors and fonts | CSS variables at the top of `styles.css` |
+Repo Settings → Pages → Branch: main / (root) → Save.
 
 ## Contact
 
-For queries, call or WhatsApp +91 78678 79173.
-
-
+Call or WhatsApp +91 78678 79173.
